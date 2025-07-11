@@ -26,8 +26,12 @@ const RegisterPage = () => {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Register gagal");
       setSuccess("Register berhasil! Silakan login.");
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Unexpected error");
+      }
     } finally {
       setLoading(false);
     }

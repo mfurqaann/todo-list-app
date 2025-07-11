@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { Todo, TodoFilter } from '@/types/todo';
 import Cookies from 'js-cookie';
+import { Data } from '@/types/data';
 
 export const useTodos = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -20,14 +21,13 @@ export const useTodos = () => {
         });
         if (!res.ok) throw new Error('Gagal mengambil data todo');
         const data = await res.json();
-        // created_at dari backend, ubah ke Date
-        setTodos(data.map((t: any) => ({
+        setTodos(data.map((t: Data) => ({
           id: t.id.toString(),
           text: t.text,
           completed: !!t.completed,
-          createdAt: new Date(t.created_at),
+          createdAt: new Date(t.createdAt),
         })));
-      } catch (err) {
+      } catch {
         setTodos([]);
       }
     };

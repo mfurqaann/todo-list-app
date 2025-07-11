@@ -32,8 +32,12 @@ const LoginPage = () => {
       setSuccess("Login berhasil!");
       Cookies.set('token', data.token, { expires: 1 });
       router.push('/')
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Unexpected error");
+      }
     } finally {
       setLoading(false);
     }

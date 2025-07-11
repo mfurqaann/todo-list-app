@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Todo } from '@/types/todo';
 import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -49,9 +49,8 @@ export const TodoItem = ({ todo, onToggle, onEdit, onDelete }: TodoItemProps) =>
       exit={{ opacity: 0, x: -100 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className={`transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border-primary/10 ${
-        todo.completed ? 'bg-muted/50' : 'bg-gradient-to-r from-card to-card/90'
-      }`}>
+      <Card className={`transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border-primary/10 ${todo.completed ? 'bg-muted/50' : 'bg-gradient-to-r from-card to-card/90'
+        }`}>
         <CardContent className="p-4">
           <div className="flex items-start gap-3">
             <Checkbox
@@ -59,7 +58,7 @@ export const TodoItem = ({ todo, onToggle, onEdit, onDelete }: TodoItemProps) =>
               onCheckedChange={() => onToggle(todo.id)}
               className="mt-1"
             />
-            
+
             <div className="flex-1 min-w-0">
               {isEditing ? (
                 <div className="flex gap-2">
@@ -82,9 +81,8 @@ export const TodoItem = ({ todo, onToggle, onEdit, onDelete }: TodoItemProps) =>
                 </div>
               ) : (
                 <div className="space-y-2">
-                  <p className={`text-sm leading-relaxed ${
-                    todo.completed ? 'line-through text-muted-foreground' : ''
-                  }`}>
+                  <p className={`text-sm leading-relaxed ${todo.completed ? 'line-through text-muted-foreground' : ''
+                    }`}>
                     {todo.text}
                   </p>
                   <div className="flex items-center gap-2">

@@ -25,7 +25,7 @@ export const useTodos = () => {
           id: t.id.toString(),
           text: t.text,
           completed: !!t.completed,
-          createdAt: new Date(t.createdAt),
+          createdAt: new Date(t.created_at),
         })));
       } catch {
         setTodos([]);

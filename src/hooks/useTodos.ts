@@ -1,7 +1,5 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { Todo, TodoFilter } from "@/types/todo";
-import Cookies from "js-cookie";
-import { Data } from "@/types/data";
 
 export const useTodos = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -19,38 +17,32 @@ export const useTodos = () => {
     ]);
   }, []);
 
-  const toggleTodo = useCallback(
-    (id: string) => {
-      setTodos((prev) =>
-        prev.map((td) =>
-          td.id === id
-            ? {
-                ...td,
-                completed: !td.completed,
-              }
-            : td
-        )
-      );
-    },
-    [todos]
-  );
+  const toggleTodo = useCallback((id: string) => {
+    setTodos((prev) =>
+      prev.map((td) =>
+        td.id === id
+          ? {
+              ...td,
+              completed: !td.completed,
+            }
+          : td
+      )
+    );
+  }, []);
 
-  const editTodo = useCallback(
-    (id: string, newText: string) => {
-      setTodos((prev) =>
-        prev.map((td) =>
-          td.id === id
-            ? {
-                ...td,
-                text: newText,
-                createdAt: new Date(),
-              }
-            : td
-        )
-      );
-    },
-    [todos]
-  );
+  const editTodo = useCallback((id: string, newText: string) => {
+    setTodos((prev) =>
+      prev.map((td) =>
+        td.id === id
+          ? {
+              ...td,
+              text: newText,
+              createdAt: new Date(),
+            }
+          : td
+      )
+    );
+  }, []);
 
   const deleteTodo = useCallback(async (id: string) => {
     setTodos((prev) => prev.filter((td) => td.id !== id));

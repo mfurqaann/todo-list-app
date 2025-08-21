@@ -5,9 +5,6 @@ import { useTodos } from '@/hooks/useTodos';
 import { TodoForm } from './TodoForm';
 import { TodoFilter } from './TodoFilter';
 import { TodoList } from './TodoList';
-import { Button } from '@/components/ui/button';
-import { useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
 
 export const TodoApp = () => {
   const {
@@ -22,12 +19,6 @@ export const TodoApp = () => {
   } = useTodos();
 
   const counts = getCounts();
-  const router = useRouter();
-
-  const handleLogout = () => {
-    Cookies.remove('token');
-    router.replace('/login');
-  };
 
   return (
     <motion.div
@@ -55,13 +46,6 @@ export const TodoApp = () => {
             Kelola tugas harian kamu dengan mudah ✨
           </motion.p>
         </div>
-        <Button
-          variant="outline"
-          className="ml-4 whitespace-nowrap cursor-pointer"
-          onClick={handleLogout}
-        >
-          Logout
-        </Button>
       </div>
 
       <TodoForm onAddTodo={addTodo} />
